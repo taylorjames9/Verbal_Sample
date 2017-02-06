@@ -14,14 +14,20 @@ public class Paddle : MonoBehaviour {
     }
 
 	public void Awake(){
+        hitTarget = false;
         Instance = this;
     }
 
+    void Update(){
+
+
+    }
     public void ChooseTarget(string _loc){
         Debug.Log("We're inside of ChooseTarget Fucntion");
         switch(_loc){
             case "L":
                 mySearchTarget = allPossibleTargets[0];
+                Debug.Log("our Target is Lobby");
             break;
             case "E":
                 mySearchTarget = allPossibleTargets[1];
@@ -41,6 +47,7 @@ public class Paddle : MonoBehaviour {
     }
 
     public void OnTriggerEnter(Collider other){
+        Debug.Log("Something entered my trigger");
         if(other.gameObject.Equals(mySearchTarget)){
             hitTarget = true; 
         }

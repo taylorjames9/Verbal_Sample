@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class RotatePlayer : MonoBehaviour {
 	void Update () {
-		Debug.Log("Rotating Player");
-		if(Input.GetKey(KeyCode.A)){
+		if(Input.GetKey(KeyCode.LeftArrow)){
 			Debug.Log("A Key is DOWN");
 			transform.Rotate(0,-1,0);
-		} else if (Input.GetKey(KeyCode.D)){
+		} else if (Input.GetKey(KeyCode.RightArrow)){
 			transform.Rotate(0,1,0);
 		}
 	}

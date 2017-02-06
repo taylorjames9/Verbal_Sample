@@ -11,9 +11,10 @@ public class RequestManager : MonoBehaviour {
         if(Input.GetKeyUp(KeyCode.L)){
             Debug.Log("L Key pressed");
             //Start Paddle Rotation
-            Pivot.Instance.Scan("L");
+            StartCoroutine(Pivot.Instance.Scan("L"));
             //Paddle should update its hitTarget depending on which location is sought
-            OnRequestMade("L");
+            //OnRequestMade("Lobby");
+            Paddle.Instance.ChooseTarget("L");
         }
 	}
 
