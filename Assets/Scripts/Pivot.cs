@@ -7,6 +7,8 @@ public class Pivot : MonoBehaviour {
 	public static Pivot Instance {get; set;}
 	bool sweep;
 
+	float myAngleFromUserFacing;
+
 	void Awake(){
 		Instance = this;
 
@@ -19,8 +21,10 @@ public class Pivot : MonoBehaviour {
 			yield return null;
 		}
 		//Util.CalculateAngleFromUser();
-		//Util.CalculateAdjacentLegLength();
-		//Util.CalculateOppositeLegLength();
+		Guide.targetAngleFromUserFacing = transform.rotation.y;
+		Guide.CalculateHypotenuseFromUser();
+		Guide.CalculateAdjacentLegLength();
+		Guide.CalculateOppositeLegLength();
 		Debug.Log("we've come to far...");
 		//num =0;
 		yield return null;
