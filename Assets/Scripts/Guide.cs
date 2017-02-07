@@ -4,20 +4,42 @@ using UnityEngine;
 
 public static class Guide  {
 
-    public static float targetAngleFromUserFacing;
+    private static float targetAngleFromUserFacing;
+    public static float TargetAngleFromUserFacing{get {
+        return targetAngleFromUserFacing;
+    } set {
+        targetAngleFromUserFacing = value;
+        Debug.Log("targetAngleFromUserFacing was updated to: "+targetAngleFromUserFacing);
+    }}
 
-    public static float CalculateHypotenuseFromUser(){
-        float dist = Vector3.Distance(Paddle.Instance.mySearchTarget.transform.position, Player.Instance.transform.position);
-        Debug.Log("Distance to mysearchTarget: " + dist);
-        return dist;
+    private static float distanceFromPlayer;
+    public static float DistanceFromPlayer{get {
+        return distanceFromPlayer;
+    } set {
+        distanceFromPlayer = value;
+        Debug.Log("tdistance from player was updated to: "+distanceFromPlayer);
+    }}
+
+
+    public static float CalculateAdjacentLegLength(){
+        //cos = adjacent/hypotenuse
+        float adj = Mathf.Cos(TargetAngleFromUserFacing) * DistanceFromPlayer;
+        Debug.Log("this is the adjacent side length = "+adj);
+        return adj;
+
     }
 
-    public static void CalculateAdjacentLegLength(){
-
+    public static float CalculateOppositeLegLength(){
+        //sin = opposite/hypotenuse;
+        float opp = Mathf.Sin(TargetAngleFromUserFacing) * DistanceFromPlayer;
+        Debug.Log("this is the opposite side length = "+opp);
+        return opp;
     }
 
-    public static void CalculateOppositeLegLength(){
+    public static string AR_DirectionsResponse(){
+        string myResponse = "";
 
+        return myResponse;
     }
 
 

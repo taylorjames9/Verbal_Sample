@@ -11,18 +11,19 @@ public class Pivot : MonoBehaviour {
 
 	void Awake(){
 		Instance = this;
+		Guide.TargetAngleFromUserFacing = transform.rotation.eulerAngles.y;
+		Debug.Log("facing angle from start = "+Guide.TargetAngleFromUserFacing);
 
 	}
 	public IEnumerator Scan(string locationLetter){
 		//transform.RotateAround(this.transform.position, Vector3.up, Time.deltaTime);
 		//int num = 0;
 		sweep = true;
-		while(!Paddle.Instance.hitTarget /*|| num<1000*/){
+		while(!Paddle.Instance.hitTarget){
 			yield return null;
 		}
-		//Util.CalculateAngleFromUser();
-		Guide.targetAngleFromUserFacing = transform.rotation.y;
-		Guide.CalculateHypotenuseFromUser();
+		Guide.TargetAngleFromUserFacing = transform.rotation.eulerAngles.y;
+		Guide.DistanceFromPlayer = CalculateHypotenuseFromUser();
 		Guide.CalculateAdjacentLegLength();
 		Guide.CalculateOppositeLegLength();
 		Debug.Log("we've come to far...");
@@ -43,5 +44,13 @@ public class Pivot : MonoBehaviour {
 			sweep = false;
 		yield return null;
 	}
+
+	public float CalculateHypotenuseFromUser(){
+		Debug.Log("paddle search target is: "+Paddle.Instance.mySearchTarget.name);
+        float dist = Vector3.Distance(Paddle.Instance.mySearchTarget.transform.position, Player.Instance.transform.position);
+        //Guide.TargetAngleFromUserFacing = dist;
+		Debug.Log("Distance to mysearchTarget: " + dist);
+        return dist;
+    }
 
 }
